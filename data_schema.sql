@@ -2,6 +2,7 @@ CREATE TABLE galleries (
 	id			integer PRIMARY KEY NOT NULL,
 	type			text NOT NULL,
 	title 			text NOT NULL,
+	artist			text,
 	language 		text,
 	language_localname 	text,
 	japanese_title 		text,

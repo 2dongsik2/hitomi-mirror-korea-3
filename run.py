@@ -2,6 +2,7 @@ import requests
 import os
 import sqlite3
 import json
+from bs4 import BeautifulSoup
 from datetime import datetime
 from pytz import timezone
 
@@ -27,6 +28,12 @@ if files_db_is_new:
     schema = f.read()
   files_conn.executescript(schema)
 
+def artist(id):
+    res = requests.get(f'https://ltn.hitomi.la/galleryblock/{id}.html')
+    soup = BeautifulSoup(res.text, 'html.parser')
+    artist = soup.select_one("div.artist-list")
+    artist = artist.get_text().strip()
+    return artist
 def write_date():
   with open('latest.date', 'w', encoding='utf-8') as file:
     date = datetime.now(timezone('Asia/Seoul'))
@@ -114,11 +121,12 @@ for i in range(len(nums)):
   tags = list(map(str, map(tag2oid, data['tags'])))
   files = list(map(str, map(file2oid, data['files'])))
   conn.execute("""
-  INSERT INTO galleries (id, type, title, language, language_localname, japanese_title, date, tag_ids, file_ids)
-  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+  INSERT INTO galleries (id, type, title, artist, language, language_localname, japanese_title, date, tag_ids, file_ids)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   """, (data["id"],
         data["type"],
         data["title"],
+        artist(data["id"]),
         data["language"],
         data["language_localname"],
         data["japanese_title"],
