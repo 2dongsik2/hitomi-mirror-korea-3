@@ -120,6 +120,7 @@ for i in range(len(nums)):
   data = fetch(num)
   tags = list(map(str, map(tag2oid, data['tags'])))
   files = list(map(str, map(file2oid, data['files'])))
+  print("id and artist:", data["id"], artist(data["id"]))
   conn.execute("""
   INSERT INTO galleries (id, type, title, artist, language, language_localname, japanese_title, date, tag_ids, file_ids)
   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
