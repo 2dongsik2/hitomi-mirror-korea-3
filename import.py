@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 import sqlite3
 
 db_filename = 'data.db'
