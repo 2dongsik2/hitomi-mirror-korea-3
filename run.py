@@ -121,6 +121,7 @@ for i in range(len(nums)):
   tags = list(map(str, map(tag2oid, data['tags'])))
   files = list(map(str, map(file2oid, data['files'])))
   arti = artist(data["id"])
+  print(arti)
   conn.execute("""
   INSERT INTO galleries (id, type, title, artist, language, language_localname, japanese_title, date, tag_ids, file_ids)
   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -138,7 +139,7 @@ for i in range(len(nums)):
   if i % 100 == 0:
     conn.commit()
     files_conn.commit()
-  if i >= 100000:
+  if i >= 250:
     break
   write_date()
   logs += data["id"] + "\n"
