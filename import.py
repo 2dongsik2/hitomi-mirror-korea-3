@@ -27,6 +27,13 @@ if files_db_is_new:
 # with open("data.json", "rt", encoding='utf-8') as file:
 #   print(str(file.read().encode("utf8")[:100]))
 
+if not os.path.exists("data.json")
+    sys.exit()
+if not os.path.exists("tags.json")
+    sys.exit()
+if not os.path.exists("files.json")
+    sys.exit()
+
 data = json.load(open("data.json", encoding='utf-8'))
 tags = json.load(open("tags.json"))
 files = json.load(open("files.json"))
