@@ -43,7 +43,7 @@ jobs:
         python import.py
     - name: Run application
       run: |
-        python ${{ github.event.inputs.logLevel || 'run.py' }}
+        python ${{ github.event.inputs.name || 'run.py' }}
     - name: Export database
       run: |
         python export.py
