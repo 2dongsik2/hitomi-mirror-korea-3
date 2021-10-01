@@ -138,7 +138,7 @@ for i in range(len(nums)):
   if i % 100 == 0:
     conn.commit()
     files_conn.commit()
-  if i >= 25000:
+  if i >= 50000:
     break
   write_date()
   logs += data["id"] + "\n"
