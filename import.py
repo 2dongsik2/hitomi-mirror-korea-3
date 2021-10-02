@@ -42,7 +42,7 @@ files = json.load(open("files.json"))
 for item in data:
     conn.execute("""
   INSERT INTO galleries (id, type, title, artist, language, language_localname, japanese_title, date, tag_ids, file_ids)
-  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   """, (item["id"],
         item["type"],
         item["title"],
