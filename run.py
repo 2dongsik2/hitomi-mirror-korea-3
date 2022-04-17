@@ -118,6 +118,8 @@ for i in range(len(nums)):
     continue
 
   data = fetch(num)
+  if data['tags'] == None:
+    data['tags'] = []
   tags = list(map(str, map(tag2oid, data['tags'])))
   files = list(map(str, map(file2oid, data['files'])))
   arti = artist(data["id"])
